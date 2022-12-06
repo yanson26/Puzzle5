@@ -23,16 +23,20 @@ public class Puzzle5 {
             int times = Integer.parseInt(x[1]);
             int from = Integer.parseInt(x[3]);
             int to = Integer.parseInt(x[5]);
-            int c = 1;
+
+            Stack testStack = new Stack<>();
 
             for (int i = 0; i < times; i++) {
-                cargo[to-1].push(cargo[from-1].pop());
+                testStack.push(cargo[from-1].pop());
+            }
+            for (int i = 0; i < times; i++) {
+                cargo[to-1].push(testStack.pop());
             }
         }
 
         String result = "";
-        for (int c = 0; c < cargo.length; c++) {
-            result += cargo[c].peek();
+        for (Stack stack : cargo) {
+            result += stack.peek();
         }
 
         System.out.println(result);
